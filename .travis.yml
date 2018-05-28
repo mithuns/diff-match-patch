@@ -11,6 +11,7 @@ matrix:
       before_script:
         - "cd python2"
         - "pip install --upgrade setuptools"
+        - "pip freeze > requirements.txt"
         - "pip install -r requirements.txt"
       cache: pip
       language: python
