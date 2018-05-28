@@ -1,0 +1,14 @@
+matrix:
+  include:
+
+    - language: cpp
+    - language: csharp
+    - language: dart
+    - language: java
+    - language: javascript
+    - language: lua
+    - language: objectivec
+
+    notifications:
+      email:
+        - m.singh2005@gmail.com
