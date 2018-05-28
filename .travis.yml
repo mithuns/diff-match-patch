@@ -9,9 +9,8 @@ matrix:
       script: "mvn clean package"
     -
       before_script:
-        - echo "$TRAVIS_BUILD_DIR"
         - "cd python2"
-        - echo "pwd"
+        - "pip install --upgrade setuptools"
         - "pip install -r requirements.txt"
       cache: pip
       language: python
