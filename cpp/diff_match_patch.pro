@@ -7,7 +7,7 @@ mac {
 }
 
 # don't embed the manifest for now (doesn't work :( )
-#CONFIG -= embed_manifest_exe 
+#CONFIG -= embed_manifest_exe
 
 FORMS =
 
@@ -15,5 +15,4 @@ HEADERS = diff_match_patch.h diff_match_patch_test.h
 
 SOURCES = diff_match_patch.cpp diff_match_patch_test.cpp
 
-RESOURCES = 
-
+RESOURCES =

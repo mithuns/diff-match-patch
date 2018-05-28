@@ -38,6 +38,7 @@ matrix:
         - "xcodebuild -workspace project.xcworkspace -scheme AppName -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' build test"
     -
       before_script:
+        - "cd cpp"
         - "mkdir build"
         - "cd build"
         - "cmake .."
@@ -46,6 +47,18 @@ matrix:
         - clang
       language: cpp
       script: "make && make test"
+      -
+        before_script:
+          - "cd csharp"
+        language: csharp
+        solution: diff-match-patch.sln
+        - dotnet: 1.1.5
+          mono: none
+          env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
+        - mono: latest
+        script:
+          - ./build.sh
+          - ./test.sh
 notifications:
   email:
     - m.singh2005@gmail.com
