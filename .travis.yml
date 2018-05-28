@@ -1,14 +1,40 @@
+---
 matrix:
   include:
-
-    - language: cpp
-    - language: csharp
-    - language: dart
-    - language: java
-    - language: javascript
-    - language: lua
-    - language: objectivec
-
-    notifications:
-      email:
-        - m.singh2005@gmail.com
+    -
+      before_script:
+        - "cd java"
+      jdk: oraclejdk8
+      language: java
+      script: "mvn clean package"
+    -
+      before_script:
+        - echo "$TRAVIS_BUILD_DIR"
+        - "cd python2"
+        - "pip install -r requirements.txt"
+      cache: pip
+      language: python
+      python: 2.7
+      script:
+        - "python -m unittest discover"
+    -
+      before_script:
+        - "cd objectivec"
+      language: objective-c
+      os: osx
+      osx_image: xcode8.3
+      script:
+        - "xcodebuild -workspace project.xcworkspace -scheme AppName -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' build test"
+    -
+      before_script:
+        - "mkdir build"
+        - "cd build"
+        - "cmake .."
+      compiler:
+        - gcc
+        - clang
+      language: cpp
+      script: "make && make test"
+notifications:
+  email:
+    - m.singh2005@gmail.com
