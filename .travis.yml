@@ -38,27 +38,14 @@ matrix:
         - "xcodebuild -workspace project.xcworkspace -scheme AppName -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' build test"
     -
       before_script:
-        - "cd cpp"
-        - "mkdir build"
-        - "cd build"
-        - "cmake .."
-      compiler:
-        - gcc
-        - clang
+        - "sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa"
+        - "sudo apt-get update -qq"
+        - "sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev"
       language: cpp
-      script: "make && make test"
-      -
-        before_script:
-          - "cd csharp"
-        language: csharp
-        solution: diff-match-patch.sln
-        - dotnet: 1.1.5
-          mono: none
-          env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
-        - mono: latest
-        script:
-          - ./build.sh
-          - ./test.sh
+      script:
+        - "qmake -qt=qt5 -v"
+        - "qmake -qt=qt5"
+        - "make"
 notifications:
   email:
     - m.singh2005@gmail.com
