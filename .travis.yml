@@ -45,7 +45,18 @@ matrix:
       script:
         - "qmake -qt=qt5 -v"
         - "qmake -qt=qt5"
-        - "make"
+        - make
+    -
+      before_script:
+        - "cd csharp"
+      language: csharp
+      solution: solution-name.sln
+      dotnet: 1.1.5
+      mono: none
+      env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
+      mono: latestscript
+      script:
+        - dotnet restore
 notifications:
   email:
     - m.singh2005@gmail.com
