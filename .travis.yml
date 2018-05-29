@@ -1,0 +1,51 @@
+---
+matrix:
+  include:
+    -
+      before_script:
+        - "cd java"
+      jdk: oraclejdk8
+      language: java
+      script: "mvn clean package"
+    -
+      before_script:
+        - "cd python2"
+        - "pip install --upgrade setuptools"
+        - "pip freeze > requirements.txt"
+        - "pip install -r requirements.txt"
+      cache: pip
+      language: python
+      python: 2.7
+      script:
+        - "python -m unittest discover"
+    -
+      before_script:
+        - "cd python3"
+        - "pip install --upgrade setuptools"
+        - "pip freeze > requirements.txt"
+        - "pip install -r requirements.txt"
+      language: python
+      python: 3.6
+      script:
+        - "python -m unittest discover"
+    -
+      before_script:
+        - "cd objectivec"
+      language: objective-c
+      os: osx
+      osx_image: xcode8.3
+      script:
+        - "xcodebuild -workspace project.xcworkspace -scheme AppName -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' build test"
+    -
+      before_script:
+        - "sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa"
+        - "sudo apt-get update -qq"
+        - "sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev"
+      language: cpp
+      script:
+        - "qmake -qt=qt5 -v"
+        - "qmake -qt=qt5"
+        - "make"
+notifications:
+  email:
+    - m.singh2005@gmail.com
