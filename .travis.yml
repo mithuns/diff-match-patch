@@ -49,14 +49,24 @@ matrix:
     -
       before_script:
         - "cd csharp"
+      dotnet: "1.1.5"
+      env: DOTNETCORE=1
       language: csharp
-      solution: solution-name.sln
-      dotnet: 1.1.5
-      mono: none
-      env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
       mono: latestscript
       script:
-        - dotnet restore
+        - "dotnet restore"
+      solution: solution-name.sln
+    -
+      before_script:
+        - "cd dart"
+      dart: "1.15.0"
+      dart_task:
+        -
+          test: "--exclude-tags no-xvfb"
+        -
+          test: "--tags no-xvfb"
+      language: dart
+      with_content_shell: true
 notifications:
   email:
     - m.singh2005@gmail.com
