@@ -26,7 +26,7 @@ require 'bit'   -- <http://bitop.luajit.org/>
 local band, bor, lshift
     = bit.band, bit.bor, bit.lshift
 --]]
-
+require 'bit'
 local band, bor, lshift
     = bit32.band, bit32.bor, bit32.lshift
 local type, setmetatable, ipairs, select
